@@ -32,9 +32,9 @@ export class AuthController {
   async create(@Body() UserDto: UserDto) {
     return this.register(UserDto);
   }
-  register(User: UserDto): string {
-    console.log(User)
-    return `sucesses ${JSON.stringify(User)}`
+  register(user: UserDto): string {
+    console.log(user)
+    return `Successfully registered`
   }
 
 }
