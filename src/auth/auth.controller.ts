@@ -1,4 +1,4 @@
-import { Body, Controller, Get, HttpCode, Param, Post  } from "@nestjs/common";
+import { Body, Controller, Get, Param, Post, UsePipes, ValidationPipe  } from "@nestjs/common";
 import { UserDto } from "./auth.userDto";
 
 @Controller("auth")
@@ -28,7 +28,13 @@ export class AuthController {
     return `<body style='background:#050505;'><h1 class='bg-red-900' style='color:white;'>you are logged in ${params.id}</h1></body>`;
   }
   @Post("register")
+  @UsePipes(new ValidationPipe({ transform: true }))
   async create(@Body() UserDto: UserDto) {
-    return "user created";
+    return this.register(UserDto);
   }
+  register(User: UserDto): string {
+    console.log(User)
+    return `sucesses ${JSON.stringify(User)}`
+  }
+
 }
