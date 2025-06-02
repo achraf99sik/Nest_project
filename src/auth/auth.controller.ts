@@ -1,11 +1,19 @@
-import { Body, Controller, Get, HttpStatus, Param, Post, Res, UsePipes, ValidationPipe  } from "@nestjs/common";
+import { Body, Controller, Get, Param, Post, UsePipes, ValidationPipe  } from "@nestjs/common";
 import { UserDto } from "./auth.userDto";
+import { AuthService } from "./auth.service";
+import { Auth } from "./auth.interface";
 
 @Controller("auth")
 export class AuthController {
+  constructor(private authService: AuthService) {}
   @Get()
   auth() {
     return "<a href='/auth/login'><button>Login</button></a>";
+  }
+
+  @Get('users')
+  async findAll(): Promise<Auth[]> {
+    return this.authService.findAll();
   }
   @Get("login")
   login(): string {
@@ -30,7 +38,7 @@ export class AuthController {
   @Post("register")
   @UsePipes(new ValidationPipe({ transform: true }))
   async create(@Body() UserDto: UserDto) {
-    return this.register(UserDto);
+    return this.authService.register(UserDto);
   }
   register(user: UserDto): string {
     console.log(user)
