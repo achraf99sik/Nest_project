@@ -1,11 +1,11 @@
-import { Body, Controller, Get, Param, Post, UsePipes, ValidationPipe  } from "@nestjs/common";
+import { Body, Controller, Get, HttpStatus, Param, Post, Res, UsePipes, ValidationPipe  } from "@nestjs/common";
 import { UserDto } from "./auth.userDto";
 
 @Controller("auth")
 export class AuthController {
   @Get()
-  auth(): string  {
-    return "auth controller";
+  auth() {
+    return "<a href='/auth/login'><button>Login</button></a>";
   }
   @Get("login")
   login(): string {
@@ -18,7 +18,7 @@ export class AuthController {
       <label for="email">Last name:</label><br>
       <input type="email" id="email" name="email" value="exemple@email.com"><br><br>
       <label for="password">Last name:</label><br>
-      <input type="password" id="password" name="password" value="Doe"><br><br>
+      <input type="password" id="password" name="password" value="Pa$$w0rd!"><br><br>
       <input type="submit" value="Submit">
     </form>
     `;
