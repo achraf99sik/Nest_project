@@ -12,4 +12,7 @@ export class AuthService {
     findAll(): Auth[] {
         return this.auths;
     }
+    delete(id: number) {
+        this.auths.splice(id, 1);
+    }
 }
