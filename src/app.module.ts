@@ -2,9 +2,10 @@ import { MiddlewareConsumer, Module, NestModule, RequestMethod } from '@nestjs/c
 import { AuthModule } from './auth/auth.module';
 import { authMiddleware } from './auth/auth.middleware';
 import { DevModule } from './dev/dev.module';
+import { ConfigModule } from '@nestjs/config';
 
 @Module({
-  imports: [AuthModule, DevModule],
+  imports: [AuthModule, DevModule, ConfigModule.forRoot()],
 })
 export class AppModule implements NestModule {
   configure(consumer: MiddlewareConsumer) {
