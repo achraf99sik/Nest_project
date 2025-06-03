@@ -1,4 +1,4 @@
-import { Body, Controller, Get, Param, Post, UsePipes, ValidationPipe  } from "@nestjs/common";
+import { Body, Controller, Get, Param, Post, Redirect, UsePipes, ValidationPipe  } from "@nestjs/common";
 import { UserDto } from "./auth.userDto";
 import { AuthService } from "./auth.service";
 import { Auth } from "./auth.interface";
@@ -42,7 +42,8 @@ export class AuthController {
   }
   register(user: UserDto): string {
     console.log(user)
-    return `Successfully registered`
+    Redirect("auth/users",201);
+    return "Successfully registered";
   }
 
 }
